@@ -17,7 +17,7 @@ boost::asio::const_buffer& operator>>(boost::asio::const_buffer& buf,
     for(auto& b : res)
     {
         const auto byte = boost::asio::buffer(buf, 1);
-        b = *boost::asio::buffer_cast<const uint8_t*>(byte);
+        b = *static_cast<const uint8_t*>(byte.data());
         buf = buf + sizeof(uint8_t);
     }
     return buf;
